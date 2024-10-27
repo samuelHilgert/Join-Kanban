@@ -8,7 +8,6 @@ let currentSubtaskId;
 let templateIndex = 3;
 let setCategory = "backlog";
 
-
 /**
  * This function loads the conctacts and saves them to the array "contactsForTasks"
  * 
@@ -23,7 +22,6 @@ async function updateTaskContacts() {
   }
 }
 
-
 /**
  * This function includes all functions to adds the newly created task to the board
  * 
@@ -36,9 +34,7 @@ async function addTask() {
   }
 }
 
-
 /////////////////////////////// EDIT ADD-TASK FORM ON BOARD ////////////////////////////////
-
 
 /**
  * This function resets the values by editing the current task on board.html
@@ -61,7 +57,6 @@ async function initiateFunctionsForAddTaskOnBoard() {
   showDiv.style.display = "flex";
 }
 
-
 /**
  * This function saves the changes in the localStorage for the guest
  *
@@ -73,8 +68,6 @@ function saveEditChangesForGuest() {
     }
   } 
 }
-
-
 
 /**
  * This function gets the input.values
@@ -91,13 +84,12 @@ function readTaskInputEditTask() {
   };
 }
 
-
 /**
  * This function returns the value from priority
  * 
  */
 function determinePriority() {
-  let prio = "Medium"; // Standardpriorität
+  let prio = "Medium"; 
   const urgentBtn = document.getElementById(`urgentBtn-${templateIndex}`);
   const mediumBtn = document.getElementById(`mediumBtn-${templateIndex}`);
   const lowBtn = document.getElementById(`lowBtn-${templateIndex}`);
@@ -108,7 +100,6 @@ function determinePriority() {
   }
   return prio;
 }
-
 
 /**
  * This function sets and saves the currentTask with the values of taskInput.values
@@ -130,7 +121,6 @@ async function setValuesAfterEditing(taskInput, formattedInputDate, prio) {
   }
 }
 
-
 /**
  * This function sets the currentTask with the values of taskInput.values 
  * 
@@ -149,12 +139,9 @@ function setValuesFromBoardForm(currentTask, taskInput, formattedInputDate, prio
   currentTask.subtasksDone = subtasksDone;
 }
 
-
 /////////////////////////////// END EDIT ADD-TASK FORM ON BOARD ////////////////////////////////
 
-
 ///////////////////////////////// ADD-TASK FORM ON HTML AND BOARD ////////////////////////////////////
-
 
 /**
  * This function initiates the process of adding a new task from the task form. 
@@ -181,7 +168,6 @@ async function initiateFunctionsForAddTaskForm() {
   addTaskToBoardMessage();
 }
 
-
 /**
  * This function gets the input.values from the add-task-form
  * 
@@ -199,7 +185,6 @@ function readTaskInput() {
   };
 }
 
-
 /**
  * This function checks, whether the category inputfield is selected.
  * 
@@ -216,7 +201,6 @@ function checkCategorySelection(taskInput) {
   return true; 
 }
 
-
 /**
  * This function shakes the required Text, when a required inputfield is not be filled
  * 
@@ -228,7 +212,6 @@ function shakeDiv() {
     container.classList.remove("shake");
   }, 500);
 }
-
 
 /**
  * This function opens the selection menu from the category-div.
@@ -249,7 +232,6 @@ function toggleCategoryDiv() {
   }
 }
 
-
 /**
  * This function gets the next available ID that's not already used in the tasks array.
  *
@@ -262,7 +244,6 @@ function getNextAvailableTaskId() {
   }
   return id.toString();
 }
-
 
 /**
  * This function gets the values from input.values
@@ -287,7 +268,6 @@ function getTaskValues(taskInput, formattedInputDate, prio, id) {
   };
 }
 
-
 /**
  * This function saves the new task in the array tasks and remote for the user
  * 
@@ -301,7 +281,6 @@ async function saveNewTask() {
     await setItem("users", JSON.stringify(users));
   }
 }
-
 
 /**
  * This function resets the values from the inputfields
@@ -320,12 +299,9 @@ function resetAddTaskValues() {
   checkedCheckboxes = [];
 }
 
-
 ///////////////////////////////// END ADD-TASK FORM ON HTML ////////////////////////////////////
 
-
 ///////////////////////////////////////// ADD-SUBTASKS /////////////////////////////////////////
-
 
 /**
  * This function includes all functions to add the newly subtasks
@@ -339,7 +315,6 @@ async function addSubtask() {
   }
 }
 
-
 /**
  * This function retrieves the current task based on the user's authorization level.
  * It decides which task list to access (either a general task list or a user-specific task list)
@@ -350,7 +325,6 @@ async function addSubtask() {
 function getCurrentTask() {
   return authorized === "guest" ? tasks[currentOpenTaskId] : users[currentUser].tasks[currentOpenTaskId];
 }
-
 
 /**
  * This function includes all functions for editing the subtasks in existing tasks
@@ -368,7 +342,6 @@ async function initiateFunctionsForAddSubtasksOnBoard() {
     changeIcons(); 
   }
 }
-
 
 /**
  * This function includes all functions for editing the subtasks in existing tasks
@@ -390,7 +363,6 @@ function editExistSubtask(currentTask, subtaskValue) {
   }
 }
 
-
 /**
  * This function adds new subtasks on the add-task-form
  * 
@@ -407,12 +379,9 @@ async function initiateFunctionsForAddSubtasksForm() {
   }
 }
 
-
 ///////////////////////////////////// END ADD-SUBTASKS //////////////////////////////////////
 
-
 ///////////////////////////////////////// EDIT SUBTASKS /////////////////////////////////////////
-
 
 /**
  * This function includes all functions for editing the selected subtask
@@ -426,7 +395,6 @@ function editSubtask(element) {
     initiateFunctionsForEditSubtasksInForm(element); 
   }
 }
-
 
 /**
  * This function initiate the functions for the user or the guest
@@ -442,7 +410,6 @@ async function initiateFunctionsForEditSubtasksInTask(element) {
     editSubtaskInTask(element, currentTask);
   }
 }
-
 
 /**
  * This function checks, whether the selected subtask is open or already done.
@@ -464,7 +431,6 @@ function editSubtaskInTask(element, currentTask) {
   }
 }
 
-
 /**
  * This function checks, whether the selected subtask is open or already done.
  * 
@@ -479,7 +445,6 @@ function setSubtaskInputValue(currentSubtask) {
   }
   changeIcons();
 }
-
 
 /**
  * This function edits the selected subtask in the form
@@ -498,7 +463,6 @@ async function initiateFunctionsForEditSubtasksInForm(element) {
   changeIcons();
 }
 
-
 /**
  * This function gets the index of the selected subtask 
  * 
@@ -512,12 +476,9 @@ function getSubtaskIndex(subtaskContainer, element) {
   return subtaskIndex;
 }
 
-
 ///////////////////////////////////// END EDIT SUBTASKS //////////////////////////////////////
 
-
 ////////////////////////////////////// DELETE SUBTASKS ///////////////////////////////////////
-
 
 /**
  * This function returns the current task based on user authorization level.
@@ -527,7 +488,6 @@ function getCurrentTaskForDeletion() {
   return authorized === "guest" ? tasks[currentOpenTaskId] : users[currentUser].tasks[currentOpenTaskId];
 }
 
-
 /**
  * This function deletes a subtask and re-renders the subtasks UI for the board page when templateIndex is 3.
  * @param {number} index - The index of the subtask to delete.
@@ -536,7 +496,6 @@ function getCurrentTaskForDeletion() {
 function deleteSubtaskForBoard(index, currentTask) {
   deleteAndRenderSubtasks(index, currentTask);
 }
-
 
 /**
  * This function deletes a subtask from the subtasks array and updates the DOM for non-board pages or different template indices.
@@ -548,7 +507,6 @@ function deleteSubtaskForOtherPages(index) {
   const subtaskContainer = document.getElementById(`subtaskDivAddTask-${templateIndex}`);
   renderSubtasks(subtaskContainer);
 }
-
 
 /**
  * This function deletes a subtask based on the page path, template index, and user authorization.
@@ -562,7 +520,6 @@ function deleteSubtask(i) {
     deleteSubtaskForOtherPages(i);
   }
 }
-
 
 /**
  * This function delets the subtask from the arrays and renders the subtasks again 
@@ -583,7 +540,6 @@ function deleteAndRenderSubtasks(i, currentTask) {
 
 /////////////////////////////////// END DELETE SUBTASKS /////////////////////////////////////
 
-
 /**
  * Event listener for handling keypress events across the document.
  * Specifically, it checks for the 'Enter' key press (keyCode 13) when the focus is on the subtask input.
@@ -599,7 +555,6 @@ document.addEventListener("keypress", function (event) {
   }
 });
 
-
 /**
  * This function clears the input field for subtasks, removes focus from it, and updates the dropdown icon.
  * It is typically called to reset the subtask input area after a subtask has been added or when clearing the input is needed.
@@ -614,7 +569,6 @@ function clearSubtaskInput() {
   `;
 }
 
-
 /**
  * This function hides the category division if it is currently displayed as a flexbox.
  * Therefore it checks if the category division (a UI element identified by a specific ID) is visible
@@ -626,7 +580,6 @@ function clearCategory() {
     categoryDiv.style.display = "none";
   }
 }
-
 
 /**
  * This function hides the contact dropdown if it is currently displayed as a flexbox.
@@ -641,7 +594,6 @@ function clearContactDropdown() {
   }
 }
 
-
 /**
  * This function resets the Arrays and is called when the form is 
  * cleared or submitted to ensure a clean state.
@@ -651,7 +603,6 @@ function resetArrays() {
   subtasks = [];
   checkedCheckboxes = [];
 }
-
 
 /**
  * This function clears all input fields and resets selections within a form, identified by a dynamic template index.
@@ -673,7 +624,6 @@ function clearForm() {
   resetArrays();
 }
 
-
 /**
  * This function sets priority for a task based on the provided button ID.
  * Therefore it adds active classes to the priority button to indicate selection,
@@ -685,7 +635,6 @@ function setPriority(btnId) {
   setActiveClasses(btnId);
 }
 
-
 /**
  * This function resets the visual indication of task priority by removing active 
  * classes from priority buttons.
@@ -693,7 +642,6 @@ function setPriority(btnId) {
 function resetPriority() {
   removeActiveClasses();
 }
-
 
 /**
  * This function removes specific active classes from priority buttons and resets the styles of their contained SVG elements.
@@ -716,7 +664,6 @@ function removeActiveClasses() {
   });
 }
 
-
 /**
  * This function adds a specified class to a button and sets the fill color of its SVG element.
  * @param {HTMLElement} button - The button to modify.
@@ -732,7 +679,6 @@ function activateButton(button, className, fill) {
     }
   }
 }
-
 
 /**
  * This function sets active classes on buttons based on the button ID to indicate priority.
@@ -757,7 +703,6 @@ function setActiveClasses(btnId) {
   }
 }
 
-
 /**
  * This function rotates the dropdown icon based on whether the dropdown is open or not.
  * It applies a CSS transform to rotate the icon element by 180 degrees when the dropdown is open,
@@ -774,7 +719,6 @@ function rotateDropdownIcon(icon, isOpen) {
   }
 }
 
-
 /**
  * This function sets the minimum date that can be selected in a date input field to today's date.
  * It ensures that users cannot select a date earlier than the current date.
@@ -786,7 +730,6 @@ function setMinimumDate() {
     .getElementById(`taskDate-${templateIndex}`)
     .setAttribute("min", minDate);
 }
-
 
 /**
  * This function converts the date from a date input field to a formatted string and sets the input type to text.
@@ -803,9 +746,7 @@ async function formatInputDate(input) {
   input.value = formattedDate;
 }
 
-
 ///////// SEARCHBAR /////////
-
 
 /**
  * This function toggles the placeholder text and the associated class of the "taskAssignedTo" input field.
@@ -823,7 +764,6 @@ function clearAssignToInput() {
   }
 }
 
-
 /**
  * This function toggles the rotation state of an arrow icon.
  * It checks if the arrow icon currently has the "rotate-180" class and toggles it.
@@ -836,7 +776,6 @@ function turnArrow() {
     arrow.classList.add("rotate-180");
   }
 }
-
 
 /**
  * This function filters contacts based on the provided search input.
@@ -851,7 +790,6 @@ function filterContacts(contacts, searchInput) {
   });
 }
 
-
 /**
  * This function ensures the dropdown is open and updates it with the provided data.
  * @param {Array} contacts - The contacts to display in the dropdown menu.
@@ -862,7 +800,6 @@ function manageDropdown(contacts) {
   }
   updateDropdownMenu(contacts);
 }
-
 
 /**
  * This function handles search operations to find matching contacts and update the dropdown menu accordingly.
@@ -879,7 +816,6 @@ function findMatchingContact() {
   }
 }
 
-
 /**
  * This function toggles the display of the dropdown menu for assigning contacts to tasks.
  * @param {HTMLElement} element - The dropdown menu element.
@@ -893,7 +829,6 @@ function toggleDropdownDisplay(element) {
   }
 }
 
-
 /**
  * This function renders contacts in the dropdown.
  * @param {HTMLElement} container - The container where contacts should be displayed.
@@ -905,7 +840,6 @@ function populateDropdownWithContacts(container, contacts) {
     renderContactsDropwdown(container, contact, index);
   }
 }
-
 
 /**
  * This function handles the opening and population of the dropdown menu for task contact selection.
@@ -922,7 +856,6 @@ function openDropdown() {
   showContactSelection(); 
 }
 
-
 /**
  * This function sorts the global `contactsForTasks` array alphabetically by contact names.
  * It modifies the array by sorting its elements based on the lowercase comparison
@@ -936,7 +869,6 @@ function sortContactsForTasks() {
   });
 }
 
-
 /**
  * This function renders contacts within a specified HTML container.
  *
@@ -948,7 +880,6 @@ function renderContactsDropwdown(taskContactDiv, contact, index) {
   let letters = contactNamesLetters(contact.name);
   renderDopdownMenu(taskContactDiv, letters, contact, index);
 }
-
 
 /**
  * This function renders a dropdown menu item for a contact in the specified container.
@@ -973,7 +904,6 @@ function renderDopdownMenu(taskContactDiv, letters, contact, index) {
   `;
 }
 
-
 /**
  * This function checks if the dropdown menu is currently open.
  * It determines the visibility of the dropdown menu by checking the display style
@@ -987,7 +917,6 @@ function isDropdownOpen() {
   );
   return taskContactDiv.style.display === "flex";
 }
-
 
 /**
  * This function updates the UI based on the checkbox state.
@@ -1025,7 +954,6 @@ function manageCheckedList(contactName, isChecked) {
   }
 }
 
-
 /**
  * This function handles changes to the checkbox state and updates both UI and the list of checked checkboxes.
  * 
@@ -1038,7 +966,6 @@ function handleCheckboxChange(index) {
   updateCheckboxUI(wrapper, contactName, checkbox.checked);
   manageCheckedList(contactName.textContent, checkbox.checked);
 }
-
 
 /**
  * This function iterates over all contacts and marks the checkboxes for those that have been selected.
@@ -1057,7 +984,6 @@ function markSelectedContacts() {
   }
 }
 
-
 /**
  * This function toggles the display of a contact selection element based on the visibility of the contact list.
  * @param {HTMLElement} contactSelection - The element to toggle.
@@ -1067,7 +993,6 @@ function toggleContactDisplay(contactSelection, taskContactDiv) {
   contactSelection.style.display = taskContactDiv.style.display === "none" ? "flex" : "none";
   contactSelection.innerHTML = ""; 
 }
-
 
 /**
  * This function renders a contact selection display for each checked contact.
@@ -1087,7 +1012,6 @@ function renderSelectedContacts(contactSelection, checkedCheckboxes, contactsLis
   }
 }
 
-
 /**
  * This function handles the display and update of selected contacts in the UI.
  */
@@ -1097,7 +1021,6 @@ function showContactSelection() {
   toggleContactDisplay(contactSelection, taskContactDiv);
   renderSelectedContacts(contactSelection, checkedCheckboxes, contactsForTasks);
 }
-
 
 /**
  * This function updates the dropdown menu with a given list of contacts.
@@ -1119,7 +1042,6 @@ function updateDropdownMenu(contacts) {
   }
 }
 
-
 /**
  * This function sets focus to the input field used for assigning tasks to contacts.
  */
@@ -1127,7 +1049,6 @@ function setFocusOnInputfield() {
   let inputfield = document.getElementById(`taskAssignedTo-${templateIndex}`);
   inputfield.focus();
 }
-
 
 /**
  * This function handles click events on the dropdown trigger.
@@ -1145,7 +1066,6 @@ function handleClickOnDropdown() {
   }
 }
 
-
 /**
  * This function closes the dropdown menu and resets the UI changes associated with it being open.
  * It clears the assignment input, turns the dropdown arrow back to its original state,
@@ -1160,9 +1080,7 @@ function closeDropdown() {
   taskContactDiv.style.display = "none";
 }
 
-
 ///////// SEARCHBAR ENDE /////////
-
 
 /**
  * This function handles the display of success messages and specific actions based on the page URL.
@@ -1181,7 +1099,6 @@ function addTaskToBoardMessage() {
   }
 }
 
-
 /**
  * This function handles specific actions on the 'Add Task' page
  * and manages the guest message popup and navigation for authenticated users.
@@ -1196,7 +1113,6 @@ function handleAddTaskPageActions() {
   }
 }
 
-
 /**
  * This function handles specific actions on the 'Board' page
  * and manages the guest message popup and navigation for authenticated users.
@@ -1208,7 +1124,6 @@ function handleBoardPageActions() {
     showGuestPopupMessage(div, messageText);
   }
 }
-
 
 /**
  * This function displays a success message with an animation that shows and then hides the message.
@@ -1227,7 +1142,6 @@ function showSuccessMessage() {
   }, 100);
 }
 
-
 /**
  * This function navigates to the board page after a delay.
  */
@@ -1236,7 +1150,6 @@ function forwardToBoard() {
     window.location.replace("board.html");
   }, 2000);
 }
-
 
 /**
  * This function closes the "Add Task" menu by hiding its associated contact and category divisions.
@@ -1252,7 +1165,6 @@ function closeAddTaskMenuDiv() {
   categoryDiv.style.display = "none";
 }
 
-
 /**
  * This function sets the template index to a specific value.
  */
@@ -1260,9 +1172,7 @@ function changeTemplateIndex() {
   templateIndex = 4;
 }
 
-
 //// OTHER /// 
-
 
 /**
  * This function sets the value of the task category input to the selected category.

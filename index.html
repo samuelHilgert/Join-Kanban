@@ -1,47 +1,46 @@
 <!DOCTYPE html>
 <html lang="de">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link rel="icon" type="image/x-icon" href="./assets/img/logo.svg">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <link rel="icon" type="image/x-icon" href="./assets/img/logo.svg" />
     <title>Join</title>
     <script src="./js/script.js"></script>
-    <link rel="stylesheet" href="./css/standard.css">
-    <link rel="stylesheet" href="./css/fonts.css">
-    <link rel="stylesheet" href="./css/assets.css">
-    <link rel="stylesheet" href="./css/styles.css">
-    <link rel="stylesheet" href="./css/responsive-login-signup.css">
-</head>
+    <link rel="stylesheet" href="./css/standard.css" />
+    <link rel="stylesheet" href="./css/fonts.css" />
+    <link rel="stylesheet" href="./css/assets.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/responsive-login-signup.css" />
+  </head>
 
-<body onload="indexHTMLAnimation()" class="animation-container d_c_c_c pad-x-80 pad-y-70">
-    
-        <svg class="index-logo logo-animation">
-            <image xlink:href="./assets/img/logo.svg" class="index-logo" />
-        </svg>
-    
+  <body
+    onload="indexHTMLAnimation()"
+    class="animation-container d_c_c_c pad-x-80 pad-y-70">
+    <svg class="index-logo logo-animation">
+      <image xlink:href="./assets/img/logo.svg" class="index-logo" />
+    </svg>
+  </body>
 
-</body>
-
-<script>
+  <script>
     /**
      * this is a function to initiate the animation on index.html
-     * 
+     *
      */
     function indexHTMLAnimation() {
-        let logoAnimation = document.querySelector('.logo-animation');
-        logoAnimation.addEventListener('animationend', function () { // "animationend" is the name of the event. Its a fixed term.
-            setTimeout(forward, 10);
-        });
+      let logoAnimation = document.querySelector(".logo-animation");
+      logoAnimation.addEventListener("animationend", function () {
+        setTimeout(forward, 10);
+      });
     }
 
     /**
-     * this function forwards the user to login after the animation 
-     * 
+     * this function forwards the user to login after the animation
+     *
      */
-   function forward() {
-        window.location.href = '/login.html';
+    function forward() {
+      window.location.href = "/login.html";
     }
-</script>
-
+  </script>
 </html>

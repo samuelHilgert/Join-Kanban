@@ -1,6 +1,5 @@
 let timerMobileTodo;
 
-
 /**
  * This function initiate the mobile menu for the todo in the mobile version
  * 
@@ -16,7 +15,6 @@ function startTimer(taskId) {
     }, longTapDuration); // global variable for set time, see above
   }
 }
-
 
 /**
  * This function gets the index of the current todo
@@ -35,7 +33,6 @@ function getMobileCurrentOpenTaskId(taskId) {
   setCurrentOpenTaskIdByIndex(indexTodoForMobile);
 }
 
-
 /**
  * This function saves the index value in currentOpenTaskId
  * 
@@ -47,7 +44,6 @@ function setCurrentOpenTaskIdByIndex(indexTodoForMobile) {
   }
 }
 
-
 /**
  * This function stops the timer
  * 
@@ -55,7 +51,6 @@ function setCurrentOpenTaskIdByIndex(indexTodoForMobile) {
 function clearTimer() {
   clearTimeout(timerMobileTodo);
 }
-
 
 /**
  * This function renders the categories in the mobile menu
@@ -71,7 +66,6 @@ function mobileTodoMove() {
   }
 }
 
-
 /**
  * This function changes the category of the todo after select the category in the menu 
  * 
@@ -82,9 +76,7 @@ async function mobileMoveToCategory(element) {
   resetMobileTodoSettings();
   await renderBoardTasks();
   await saveNewUserDate(); // outsourced in script.js
-  // showGuestMessageOnBoard();
 }
-
 
 /**
  * This function checks which category is clicked and resets the category
@@ -106,7 +98,6 @@ function setTheSelectedCategory(element) {
   }
 }
 
-
 /**
  * This function closes the mobile menu container
  * 
@@ -114,7 +105,6 @@ function setTheSelectedCategory(element) {
 function resetMobileTodoSettings() {
   mobilePopupFilterTodoSettings.style.display = 'none';
 }
-
 
 /**
  * This function closes the mobile menu container
@@ -126,7 +116,6 @@ function mobileTodoEdit(taskId) {
   openBoardTaskPopup(taskId);
   editTask();
 }
-
 
 /**
  * This function deletes the current task

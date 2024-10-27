@@ -14,7 +14,6 @@ function renderLetterAndPartinglineHTML(firstLetter) {
     `;
 }
 
-
 /**
  * Renders HTML for a small contact list item.
  * @param {string} id - The unique identifier for the contact.
@@ -43,7 +42,6 @@ function renderContactListHTML(
     </div>
     `;
 }
-
 
 /**
  * Renders HTML for displaying detailed contact information.
@@ -104,7 +102,6 @@ function renderContactInformationHTML(
     `;
 }
 
-
 /**
  * Renders HTML for adding a new contact form.
  * This form allows users to input contact information and submit it to create a new contact.
@@ -153,7 +150,6 @@ function renderAddContactContainerHTML() {
         </div>
     `;
 }
-
 
 /**
  * Renders HTML for editing an existing contact.
@@ -215,7 +211,6 @@ function renderEditContactHTML(
     `;
 }
 
-
 /**
  * This function returns the text for the pop-up messages when contacts or tasks are reloaded
  * 
@@ -232,7 +227,6 @@ function generateGuestMessageTextForReload(div, messageText) {
     `;
 }
 
-
 /**
  * This function returns the text for the popup messages when the user is a guest and has used a function
  * 
@@ -248,7 +242,6 @@ function generateGuestMessageText(div, messageText) {
     <div><a class="link-style guestPopupLinkStyle" onclick="clickLogout()">Zum Login</a></div>
     `;
 }
-
 
 /**
  * This function renders HTML buttons with urgent, medium, and low priority settings for tasks.
@@ -306,7 +299,6 @@ function renderAddTaskFormButton() {
     document.getElementById(`mediumBtn-${templateIndex}`).click();
 }
 
-
 /**
  * Renders HTML for the contact information menu in a mobile environment, including buttons for editing and deleting the contact.
  * This function is designed to be used on mobile devices, providing quick access to contact management features.
@@ -332,9 +324,7 @@ function renderMobileContactinfoMenuHTML(contactId) {
     `;
 }
 
-
 /////////// RENDERING FOR BOARD ////////////
-
 
 /**
  * This function renders the entire text of the task, when it is open
@@ -369,7 +359,6 @@ function renderShowTaskContent(todo, openLabel, openTitle, openDescription, open
       `;
 }
 
-
 /**
  * This function gets the current priority icon for the selection of priority in the opened task
  * 
@@ -387,7 +376,6 @@ function getPriorityIcon(todo) {
     return imgSrc;
 }
 
-
 /**
  * This function renders the entire subtasks of the opened task, which are not done
  * 
@@ -402,7 +390,6 @@ function renderOpenSubtasks(a) {
 `;
 }
 
-
 /**
  * This function renders the entire subtasks of the opened task, which are not done
  * 
@@ -416,7 +403,6 @@ function renderDoneSubtasks(b) {
     </div>
     `;
 }
-
 
 /**
  * This function renders the "assigendTo" contacts
@@ -433,7 +419,6 @@ function renderAssignedToContactsForOpenTask(contact, letters, backgroundColor) 
     </div>
     `;
 }
-
 
 /**
  * This function renders the "open" subtasks in the edit form
@@ -454,7 +439,6 @@ function renderOpenSubtasksInEditForm(subtask, index) {
     `;
 }
 
-
 /**
  * This function renders the "done" subtasks in the edit form
  * 
@@ -473,7 +457,6 @@ function renderDoneSubtasksInEditForm(subtask, index) {
   </div>
     `;
 }
-
 
 /**
  * This function generates the todo content for the todos on board
@@ -498,7 +481,6 @@ function generateTodoHTML(task) {
               </div>`;
 }
 
-
 /**
  * This function generates the "assignedTo" contacts of the todo
  * 
@@ -512,7 +494,6 @@ function renderContactsForBoardTaskDiv(marginRightClass, backgroundColor, letter
     </div>
     `;
 }
-
 
 /**
  * Renders HTML for mobile-specific todo settings options.
@@ -568,7 +549,6 @@ function renderMobileTodoSettings(taskId) {
     `;
 }
 
-
 /**
  * Renders a mobile-friendly category selection option.
  * @param {string} category - The category name to be displayed and interacted with.
@@ -577,7 +557,6 @@ function renderMobileTodoSettings(taskId) {
 function renderMobileCategories(category) {
     return `<div class="mobile-category-cursor-style cursor-pointer" id="mobileMove${category}" onclick="mobileMoveToCategory(this)">${category}</div>`;
 }
-
 
 /**
  * This function display the result text for "no found" results after using the search feature
@@ -590,7 +569,6 @@ function searchResultMessageNoFound() {
                 <a class="link-style">go back</a>
             </div>`;
 }
-
 
 /**
  * This function display the result text for "only one found" result after using the search feature
@@ -605,7 +583,6 @@ function searchResultMessageOneFound(matchingIndices) {
             </div>`;
 }
 
-
 /**
  * This function display the result text for "more results as one" after using the search feature
  *
@@ -619,9 +596,7 @@ function searchResultMessageMoreFound(matchingIndices) {
             </div>`;
 }
 
-
 /////////// END OF RENDERING FOR BOARD ////////////
-
 
 /**
  * This functions changes the icons in the subtask inputfield 
@@ -639,7 +614,6 @@ function changeIcons() {
       </div>
     `;
 }
-
 
 /**
 * This function renders the subtasks

@@ -6,7 +6,6 @@ let allInProgress;
 let allAwaitFeedback;
 let allTasks;
 
-
 /**
  * This function includes render functions for summary.html
  *
@@ -18,7 +17,6 @@ async function renderSummary() {
   renderSummaryValues();
   await updateUpcomingDate();
 }
-
 
 /**
  * Retrieves values for summary statistics by filtering tasks into different categories
@@ -38,7 +36,6 @@ function getValuesForSummary() {
   allAwaitFeedback = allAwaitFeedbackNumber.length;
   allTasks = tasks.length;
 }
-
 
 /**
  * Updates the upcoming due date asynchronously by finding the task with the nearest due date.
@@ -61,7 +58,6 @@ async function updateUpcomingDate() {
   let formattedUpcomingDate = formatUpcomingDate(upcomingDate);
   renderUpcomingDueDate(formattedUpcomingDate);
 }
-
 
 /**
  * Retrieves the timestamps of all tasks asynchronously and calculates the differences 
@@ -87,7 +83,6 @@ async function getTasksTimeStamps(allTaskTimeStamps, timeStampCurrentDate, allTi
   });
 }
 
-
 /**
  * This function calculates the absolute time difference between both timestamps
  * 
@@ -98,7 +93,6 @@ async function getTasksTimeStamps(allTaskTimeStamps, timeStampCurrentDate, allTi
 function calculateDifferencesOftimeStamps(reference, dueDate) {
   return Math.abs(reference - dueDate);
 }
-
 
 /**
  * This function formagetes the upcoming date
@@ -115,7 +109,6 @@ function formatUpcomingDate(upcomingDate) {
   return formattedUpcomingDate;
 }
 
-
 /**
  * This function renders the formatted upcomming date in summary.html
  * 
@@ -125,7 +118,6 @@ function renderUpcomingDueDate(formattedUpcomingDate) {
   let upcomingDueDate = document.getElementById("upcomingDueDate");
   upcomingDueDate.innerHTML = `${formattedUpcomingDate}`;
 }
-
 
 /**
  * This function sets the divs for rendering the values in the summary
@@ -140,7 +132,6 @@ function renderSummaryValues() {
   let allAwaitFeedbackDiv = document.getElementById("allAwaitFeedbackNumber");
   renderValuesInSummary(allTodosDiv, allDoneDiv, allUrgentDiv, allTasksDiv, allInProgressDiv, allAwaitFeedbackDiv);
 }
-
 
 /**
  * This function renders the values in the summary
@@ -161,7 +152,6 @@ function renderValuesInSummary(allTodosDiv, allDoneDiv, allUrgentDiv, allTasksDi
   allAwaitFeedbackDiv.innerHTML = `<h3>${allAwaitFeedback}</h3>`;
 }
 
-
 /**
  * This function checks whether username exists in localStorage or sessionStorage for a greet
  *
@@ -178,7 +168,6 @@ function getUserNameForGreet() {
   }
 }
 
-
 /**
  * This function displays the greeting text
  */
@@ -186,7 +175,6 @@ function displayGreeting() {
   let greeting = getGreeting();
   document.getElementById("greeting").innerHTML = greeting;
 }
-
 
 /**
  * This function generates a greeting text based on the current time of day
@@ -208,7 +196,6 @@ function getGreeting() {
   return greeting;
 }
 
-
 /**
  * This function forwards the user to board.html
  * 
@@ -216,7 +203,6 @@ function getGreeting() {
 function forwardingBoard() {
   window.location.href = `./board.html`;
 }
-
 
 /**
  * This function changes the source of the images
@@ -227,7 +213,6 @@ function forwardingBoard() {
 function changeImage(element, src) {
   element.querySelector(".summary-icon").src = src;
 }
-
 
 /**
  * This function resets the source to the default source of the image

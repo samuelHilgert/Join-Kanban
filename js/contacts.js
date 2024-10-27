@@ -21,7 +21,6 @@ let profileCircleColors =
     ]
 let nextId = 1;
 
-
 /**
  * This function renders the contact page.
  */
@@ -42,7 +41,6 @@ async function renderContacts() {
 function loadContacts() {
     return contacts;
 }
-
 
 /**
  * This function sets a backgroundcolor for the contacts-circle and checks, if the previous contact-circle has 
@@ -65,7 +63,6 @@ function setRandomColor() {
     });
 }
 
-
 /**
  * This is a function to choose a random color from the "profileCircleColors"-array.
  * 
@@ -75,7 +72,6 @@ function getRandomColor() {
     let randomColor = Math.floor(Math.random() * profileCircleColors.length);
     return profileCircleColors[randomColor];
 }
-
 
 /**
  * This function renders the contact list - therefore it iterates trough the contacts-array and checks, 
@@ -108,7 +104,6 @@ async function renderContactList() {
     }
 }
 
-
 /**
  * This function combines all elements with the css class "contact-small" in the variable contacts. 
  * Then a loop runs through contacts, where contact is a temporary variable that represents each individual element in the contacts list. 
@@ -121,7 +116,6 @@ function removeActiveClasslist() {
         contact.classList.remove('contact-small-active:hover');
     });
 }
-
 
 /**
  * This function renders the contact information HTML based on the provided contact data.
@@ -146,7 +140,6 @@ function renderContactInfo(contact, contactId, removeAnimation) {
     return contactInfoHTML;
 }
 
-
 /**
  * This function updates the contact information in the DOM with the provided HTML.
  * 
@@ -158,7 +151,6 @@ function updateContactInfo(contactId, contactInfoHTML) {
     let contactInfo = document.getElementById('contactInfo');
     contactInfo.innerHTML = contactInfoHTML;
 }
-
 
 /**
  * This function hides the contact right wrapper if it is currently shown.
@@ -175,7 +167,6 @@ function hideContactRightWrapper() {
     }
 }
 
-
 /**
  * This function shows the contact right wrapper if it is currently hidden.
  * If the contact right wrapper is hidden, it sets its display property to empty string to show it,
@@ -191,7 +182,6 @@ function showContactRightWrapper() {
         contactWrapper.classList.add('d-none');
     }
 }
-
 
 /**
  * This function opens the contact information for the currently clicked contact. 
@@ -219,7 +209,6 @@ function openContactInfo(contactId, removeAnimation = false) {
     }
 }
 
-
 /**
  * This function starts an temporarily limited animation by removing 'd-none' & adding 'animation-in' 
  * CSS-classes to the container.
@@ -234,7 +223,6 @@ function contactSuccessAnimation() {
     }, 1800);
 }
 
-
 /**
  * This function sorts the contacts array alphabetically by the name property.
  * 
@@ -246,7 +234,6 @@ function sortContacts() {
         return nameA.localeCompare(nameB);
     });
 }
-
 
 /**
  * This function gets the next available ID that's not already used in the contacts array. 
@@ -260,7 +247,6 @@ function getNextAvailableId() {
     }
     return id.toString();
 }
-
 
 /**
  * 
@@ -283,7 +269,6 @@ function getNewContactInput() {
     };
 }
 
-
 /**
  * This function adds a newly created contact to the contacts array and performs necessary actions.
  */
@@ -298,7 +283,6 @@ async function addNewContactToArray() {
     keepCircleBackgroundcolor();
 }
 
-
 /**
  * This function validates the input data of the contact form, adds a new contact to the array, 
  * and pushes the updated contacts to the remote server.
@@ -307,20 +291,18 @@ async function addNewContactToArray() {
  * @returns {promise<void>} - a promise that resolves once the new contact has been added to the remote server
  */
 async function validateAndAddContact(event) {
-    event.preventDefault(); // Prevents the default behavior of the form (automatic sending
-    let form = document.getElementById('contactForm'); // Validation of the input form data
-    if (!form.reportValidity()) { // Checking the validity of the form
-        return; // If the form is invalid, the standard error message is displayed
+    event.preventDefault(); 
+    let form = document.getElementById('contactForm');
+    if (!form.reportValidity()) { 
+        return; 
     }
-    await addNewContactToArray(); // contacted is added, if form is valid
+    await addNewContactToArray(); 
     if ((authorized === 'guest')) {
         let div = document.getElementById('guestMessagePopupContacts');
         let messageText = document.getElementById('guestMessageContacts');
-        // showGuestPopupMessage(div, messageText);
     }
     await saveNewUserDate();
 }
-
 
 /**
  * This function opens the form for adding a new contact.
@@ -333,7 +315,6 @@ function openAddContactForm() {
     addContactContainer.classList.add('animation-in');
     container.classList.remove('d-none');
 }
-
 
 /**
  * This function closes the form for adding a new contact.
@@ -349,7 +330,6 @@ function closeAddContactForm() {
     });
 }
 
-
 /**
  * This function closes the form for adding a new contact without the closing animation.
  */
@@ -357,7 +337,6 @@ function closeAddContactFormWithoutAnimation() {
     let addContactMask = document.getElementById('addContactMask');
     addContactMask.classList.add('d-none');
 }
-
 
 /**
  * This function closes the edit contact form by adding an 'animation-out' class to the container. 
@@ -372,7 +351,6 @@ function closeEditContactForm() {
         editContactContainer.removeEventListener('animationend', animationEndHandler);
     });
 }
-
 
 /**
  * This function opens the edit contact form for the specified contact ID.
@@ -398,7 +376,6 @@ function openEditContactForm(contactId) {
     }
 }
 
-
 /**
  * This function updates the contact information in the contacts array and performs necessary actions.
  * 
@@ -416,13 +393,11 @@ async function updateContactInformation(contactId, newName, newMail, newPhone) {
         if ((authorized === 'guest')) {
             let div = document.getElementById('guestMessagePopupContacts');
             let messageText = document.getElementById('guestMessageContacts');
-            // showGuestPopupMessage(div, messageText);
         }
         await saveNewUserDate();
         await renderContactList();
     }
 }
-
 
 /**
  * This functions edits a contact with the specified ID using the new information provided.
@@ -441,7 +416,6 @@ async function editContact(contactId) {
     openContactInfo(contactId, true);
 }
 
-
 /**
  * This function gives each contact in the contacts-array a unique id, starting from 1.
  */
@@ -453,7 +427,6 @@ function createUniqueContactId() {
         }
     }
 }
-
 
 /**
  * This function keeps the background color of contact circles consistent with the color 
@@ -475,7 +448,6 @@ function openMobileContactinfoMenu() {
     mobileContactinfoMenu.classList.remove('d-none');
 }
 
-
 /**
  * This function hides the contactinfo menu in the responsive view by adding d-none.
  */
@@ -483,7 +455,6 @@ function hideMobileContactinfoMenu() {
     let mobileContactinfoMenu = document.querySelector('.open-mobile-contactinfo-menu');
     mobileContactinfoMenu.classList.add('d-none');
 }
-
 
 /**
  * This function opens the invisible mobile contactinfo menu with the specified contact ID.
@@ -495,7 +466,6 @@ function openInvisibleMobileContactinfoMenu(contactId) {
     mobileContactinfoMenu.innerHTML = renderMobileContactinfoMenuHTML(contactId);
 }
 
-
 /**
  * This function clears the contact info and hides the mask.
  */
@@ -505,7 +475,6 @@ function clearContactInfoAndHideMask() {
     let wrapper = document.getElementById('editContactMask');
     wrapper.classList.add('d-none');
 }
-
 
 /**
  * This function deletes a contact from the contacts array and performs necessary actions.
@@ -523,7 +492,6 @@ async function deleteContact(contactId) {
             contacts.splice(index, 1);
             let div = document.getElementById('guestMessagePopupContacts');
             let messageText = document.getElementById('guestMessageContacts');
-            // showGuestPopupMessage(div, messageText);
         }
         await saveNewUserDate();
         await renderContactList();
@@ -532,7 +500,6 @@ async function deleteContact(contactId) {
         hideContactRightWrapper();
     }
 }
-
 
 /**
  * This function asynchronously deletes the specified contact name from the 'assignedTo' array in tasks.

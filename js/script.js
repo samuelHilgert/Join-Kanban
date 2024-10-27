@@ -8,7 +8,6 @@ let authorized = 'none';
 let currentUser;
 let editCurrentTask = [];
 
-
 /**
  * This is a function to initiate the render functions 
  * 
@@ -38,7 +37,6 @@ async function init() {
     animateUserWelcome();
 }
 
-
 /**
  * This function formats the date from add-task input and for the upcoming function in summary
  *
@@ -55,7 +53,6 @@ async function formatDateCorrect(timeStamp) {
     return formattedDate;
 }
 
-
 /**
  * This function animates the users welcome message on summary.html. 
  */
@@ -68,7 +65,6 @@ function animateUserWelcome() {
     }
 }
 
-
 /**
  * This functions includes all functions for unauthorized access
  * 
@@ -78,7 +74,6 @@ async function unauthorizedFunctions() {
     await includeHTML();
     getCurrentlySidebarLink();
 }
-
 
 /**
  * This function checks if the user used the login. If not the authorized status get the status 'none'. In this case user will not get an access.
@@ -98,7 +93,6 @@ function setAuthorizedStatus() {
     }
 }
 
-
 /**
  * This function secures unauthorized opening of pages via the URL by copying and pasting without logged in as user or guest
  * 
@@ -111,7 +105,6 @@ function checkFalseOpening() {
     }
 }
 
-
 /**
  * This function forwarding the user to the login.html
  * 
@@ -119,7 +112,6 @@ function checkFalseOpening() {
 function firstLogin() {
     return window.location.href = `./login.html`;
 }
-
 
 /**
  * This is a function to include outsourced html elements
@@ -143,7 +135,6 @@ async function includeHTML() {
     }
 }
 
-
 /**
  * This function generates the ids of the outsourced add-task form dynamic
  *
@@ -159,7 +150,6 @@ function addDynamicIDs(html, index) {
     return doc.body.innerHTML; // Gibt das modifizierte HTML zurück
 }
 
-
 /**
  * This function loads the value, whether the user logged in with the remember option
  * The data is initiate in login.js
@@ -172,7 +162,6 @@ async function loadLoggedTime() {
         console.error('Loading error:', e);
     }
 }
-
 
 /**
  * This is a query which page is visited and launch functions
@@ -189,7 +178,6 @@ async function initiateIndividualFunctions() {
     }
 }
 
-
 /**
  * This function resets the expiration time for the logout
  * 
@@ -198,7 +186,6 @@ async function resetExpiryTime() {
     rememberStatus[0].expiryDate = new Date().getMinutes() + setResetExpiryTime; // global variable above, it can be changed individual
     await setItem('remember_status', JSON.stringify(rememberStatus));
 }
-
 
 /**
  * This function executes the individual functions for the pages
@@ -220,7 +207,6 @@ async function loadIndividualFunctions(currentPage) {
     }
 }
 
-
 /**
  * This function loads the user data from the remote server to the local array "users"
  * 
@@ -232,7 +218,6 @@ async function loadUserData() {
         console.error('Loading error:', e);
     }
 }
-
 
 /**
  * This function loads the new added task as guest as well
@@ -255,7 +240,6 @@ async function loadGuestData() {
     }
 }
 
-
 /**
  * This is a function that checks whether a guest or user has logged in
  * The data is only saved remotely if the user is logged in
@@ -269,7 +253,6 @@ async function updateOrLoadData() {
         await checkAndLoadGuestData();
     }
 }
-
 
 /**
  * This function checks and load the guest data 
@@ -285,7 +268,6 @@ async function checkAndLoadUserData() {
         await reloadTasksWhenEmpty(userData);
     }
 }
-
 
 /**
  * This function checks and load the guest data 
@@ -303,7 +285,6 @@ async function checkAndLoadGuestData() {
         }
     }
 }
-
 
 /**
  * This function reloads the contacts or the tasks, when them are empty
@@ -324,7 +305,6 @@ async function reloadGuestData(contactsGuest, tasksGuest) {
     }
 }
 
-
 /**
  * This function reloads the contacts, when all contacts deleted by user
  * 
@@ -337,7 +317,6 @@ async function reloadContactsWhenEmpty(userData) {
         await saveNewUserDate(); // save new arrays content in user on the remote server
     }
 }
-
 
 /**
  * This function reloads the tasks, when all tasks deleted by user
@@ -352,7 +331,6 @@ async function reloadTasksWhenEmpty(userData) {
     }
 }
 
-
 /**
  * This is a function which includes the sample contacts from the contacts.json JSON-Document 
  * 
@@ -363,7 +341,6 @@ async function loadExamples() {
     contacts = await respContacts.json();
     tasks = await respTasks.json();
 }
-
 
 /**
  * This function moves the data in local arrays and on the server
@@ -382,7 +359,6 @@ async function saveNewUserDate() {
     }
 }
 
-
 /**
  * This function renders header elements
  * 
@@ -392,7 +368,6 @@ function renderHeader() {
     hideHelpIcon();
     renderLettersByName(lettersDiv);
 }
-
 
 /**
  * This function is included in setInterval in init()
@@ -405,7 +380,6 @@ function startExpiryCheckInterval(rememberStatus) {
         checkExpiryAndReset(rememberStatus);
     }, 30000); // repeat query every 30 seconds
 }
-
 
 /**
  * The logout time is reset every time the user clicks on an HTML document
@@ -422,7 +396,6 @@ function checkExpiryAndReset(rememberStatus) {
     }
 }
 
-
 /**
  * This function checks whether help.html is clicked. If this is the case, the help icon will be hidden
  * 
@@ -434,7 +407,6 @@ function hideHelpIcon() {
         helpIcon.style.display = 'none';
     }
 }
-
 
 /**
  * This function generates the initials of the username or guest
@@ -449,7 +421,6 @@ function renderLettersByName(lettersDiv) {
         lettersDiv.innerHTML = contactNamesLetters(userName);
     }
 }
-
 
 /**
  * This function renders the letters of first and last name of the user or the contacts
@@ -467,7 +438,6 @@ function contactNamesLetters(name) {
     letters = firstLetter + secondLetter;
     return letters;
 }
-
 
 /**
  * This function generate the background-color for the contacts
@@ -507,7 +477,6 @@ function openHeaderPopupLinks() {
     }
 }
 
-
 /**
  * Handles a click outside a specific element.
  * Hides the popup when the user clicks outside the popup area and removes the click event listener.
@@ -524,7 +493,6 @@ function handleOutsideClick(event) {
     }
 }
 
-
 /**
  * This function opens the external links with an extension of the url address
  *
@@ -535,7 +503,6 @@ function openExternalLink(link) {
     let targetUrl = url + '?external';
     window.open(targetUrl, '_blank');
 }
-
 
 /**
  * This function sets the animation of elements
@@ -549,7 +516,6 @@ function moveContainerIn(container) {
     container.classList.add('animation-in');
 }
 
-
 /**
  * This function sets the animation of elements
  *
@@ -561,7 +527,6 @@ function moveContainerOut(container) {
     container.classList.add('outside');
     container.classList.add('animation-out');
 }
-
 
 /**
  * This function sets the animation of elements
@@ -575,7 +540,6 @@ function moveContainerUp(container) {
     container.classList.add('animation-up');
 }
 
-
 /**
  * This function sets the animation of elements
  *
@@ -588,7 +552,6 @@ function moveContainerDown(container) {
     container.classList.add('animation-down');
 }
 
-
 /**
  * This function closes every popup
  * 
@@ -597,7 +560,6 @@ function moveContainerDown(container) {
 function displayNonePopup(popup) {
     popup.style.display = 'none';
 }
-
 
 /**
  * This function resets the localStorage and redirects the user to login after logout
@@ -613,7 +575,6 @@ function clickLogout() {
         window.location.href = `./login.html?msg=you are logged out`;
     }, 500);
 }
-
 
 /**
  * This function initialize the popup message after reloading tasks or contacts
@@ -632,7 +593,6 @@ function showGuestPopupMessageForReload(div, messageText) {
     }, popupCloseTime); // global variable to set the individual time until the popup closing
 }
 
-
 /**
  * This function initialize the message popup for the limited access as guest
  * 
@@ -650,7 +610,6 @@ function showGuestPopupMessage(div, messageText) {
     }, popupCloseTime);
 }
 
-
 /**
  * This function closes the message popup by onclick
  * 
@@ -661,7 +620,6 @@ function closeGuestPopupMessage(div) {
     document.body.style.overflow = 'scroll';
 }
 
-
 /**
  * This function will automatically close the message popup after some time
  * 
@@ -671,7 +629,6 @@ function closePopupAutomaticly(div) {
     div.style.display = 'none';
     document.body.style.overflow = 'scroll';
 }
-
 
 /**
  * This function stops closing the div after closing the parent div

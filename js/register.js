@@ -3,7 +3,6 @@ let checkbox = false;
 let emailExist = false;
 let displayMessageTime = 2500;
 
-
 /**
  * This function loads all already registered users from remote server
  * 
@@ -16,7 +15,6 @@ async function loadUsers() {
     }
 }
 
-
 /**
  * This function checks the individual requirements for successful registration
  * 
@@ -26,7 +24,6 @@ function register() {
     registerBtn.disabled = true; // registerBtn ist die id vom button Absenden
     checkboxClicked();
 }
-
 
 /**
  * This function checks whether the checkbox was clicked by user
@@ -50,7 +47,6 @@ function checkboxClicked() {
         signUpErrorReset();
     }
 }
-
 
 /**
  * This function checks whether email already exist
@@ -77,7 +73,6 @@ async function checkEmailExist() {
     }
 }
 
-
 /**
  * Checks if the passwords provided during sign-up match.
  * 
@@ -93,7 +88,6 @@ async function signUpPasswordsMatched() {
         handlePasswordMismatch(container);
     }
 }
-
 
 /**
  * Handles the scenario when passwords match during sign-up.
@@ -116,7 +110,6 @@ async function handleSuccessfulRegistration(container) {
     setTimeout(firstLogin, 1500);
 }
 
-
 /**
  * Handles the scenario when passwords do not match during sign-up.
  * 
@@ -135,7 +128,6 @@ async function handlePasswordMismatch(container) {
     resetSingUpFormPasswords();
 }
 
-
 /**
  * This function resets the password values 
  * 
@@ -147,7 +139,6 @@ function signUpErrorReset() {
     registerBtn.disabled = false;
 }
 
-
 /**
  * This function set message display to none
  * 
@@ -157,7 +148,6 @@ function messageDisplay(container) {
     signUpMessageContainer.style.display = 'flex';
     container.style.display = 'flex';
 }
-
 
 /**
  * Hides the message container and its parent container.
@@ -171,7 +161,6 @@ function hideMessageContainer(container) {
     container.style.display = 'none';
 }
 
-
 /**
  * If the login requirements are successful, the user data are passed to the "users" array.
  * 
@@ -180,7 +169,6 @@ async function pushUserData() {
     pushInArray();
     await pushOnRemoteServer();
 }
-
 
 /**
  * The user data are passed to the "users" array.
@@ -196,7 +184,6 @@ function pushInArray() {
     });
 }
 
-
 /**
  * The user data are passed on the remote server.
  * 
@@ -204,7 +191,6 @@ function pushInArray() {
 async function pushOnRemoteServer() {
     await setItem('users', JSON.stringify(users));
 }
-
 
 /**
  * This function includes all output messages in the various cases of the register process.
@@ -227,7 +213,6 @@ function showSignUpMessage() {
     }
 }
 
-
 /**
  * This function resets all values
  * 
@@ -243,7 +228,6 @@ function resetSingUpForm() {
     checkbox = false;
 }
 
-
 /**
  * This function resets only passwords
  * 
@@ -256,7 +240,6 @@ function resetSingUpFormPasswords() {
     registerSuccess = false;
     checkbox = false;
 }
-
 
 /**
  * This function returns the user to login.html with a success message in the URL

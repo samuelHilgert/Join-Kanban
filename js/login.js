@@ -3,7 +3,6 @@ let successPassword = false;
 let indexByEmail;
 let setExpiryTime = 2832323;
 
-
 /**
  * This function is called when the login form is submitted, it checks whether the data matches the registration 
  * 
@@ -12,7 +11,6 @@ async function checkLoginAccess() {
     loginBtn.disabled = true;
     await iterateUsers();
 }
-
 
 /**
  * Iterates through the user login process.
@@ -26,7 +24,6 @@ async function iterateUsers() {
         handleFailure();
     }
 }
-
 
 /**
  * Handles the success scenario of user login.
@@ -53,7 +50,6 @@ async function handleSuccess() {
     setTimeout(forwardToSummary, 1500);
 }
 
-
 /**
  * This function makes sure, that user and guest can not logged in at the same time
  * It cleans the local storage before it will be filled
@@ -75,7 +71,6 @@ function handleFailure() {
     verifcatePassword();
 }
 
-
 /**
  * Handles the process of remembering login credentials.
  * Sets the expiry date, updates the remember status, saves to local storage.
@@ -87,7 +82,6 @@ async function handleRememberLogin() {
     await saveToLocalStorage(expiryDate);
 }
 
-
 /**
  * Handles the process of forgetting login credentials.
  * Resets the remember status, sets the expiry date, saves to local storage.
@@ -98,7 +92,6 @@ async function handleForgetLogin() {
     let expiryDate = new Date().getMinutes() + setExpiryTime;
     await saveToLocalStorage(expiryDate);
 }
-
 
 /**
  * Saves user ID and remember status to the local storage, pushes remember status into an array, and updates it on the remote server.
@@ -113,7 +106,6 @@ async function saveToLocalStorage(expiryDate) {
     await pushRememberStatusOnRemoteServer();
 }
 
-
 /**
  * Pushes remember status into an array.
  * @param {number} expiryDate - The expiry date for remembering the login credentials.
@@ -126,7 +118,6 @@ function pushRememberStatusInArray(expiryDate) {
     });
 }
 
-
 /**
  * Updates remember status on the remote server.
  * @returns {Promise<void>}
@@ -134,7 +125,6 @@ function pushRememberStatusInArray(expiryDate) {
 async function pushRememberStatusOnRemoteServer() {
     await setItem('remember_status', JSON.stringify(rememberStatus));
 }
-
 
 /**
  * This is a function to check whether email not exists
@@ -179,7 +169,6 @@ function verifcatePassword() {
     }
 }
 
-
 /**
  * Displays the login message container and a specified container.
  * @param {HTMLElement} container - The container to display along with the login message container.
@@ -190,7 +179,6 @@ function loginMessageDisplay(container) {
     loginMessageContainer.style.display = 'flex';
     container.style.display = 'flex';
 }
-
 
 /**
  * Hides the login message container and a specified container.
@@ -203,7 +191,6 @@ function hideLoginMessageContainer(container) {
     container.style.display = 'none';
 }
 
-
 /**
  * return result whether email not found
  * 
@@ -211,7 +198,6 @@ function hideLoginMessageContainer(container) {
 function emailNotFound() {
     return users.some(user => user.email !== loginEmail.value);
 }
-
 
 /**
  * return result whether login was success
@@ -221,7 +207,6 @@ function successCheck() {
     return users.some(user => user.email === loginEmail.value && user.password === loginPassword.value);
 }
 
-
 /**
  * return result whether only email was correct
  * 
@@ -229,7 +214,6 @@ function successCheck() {
 function onlyEmailCorrect() {
     return users.some(user => user.email === loginEmail.value && user.password !== loginPassword.value);
 }
-
 
 /**
  * return index of users array, if email and password were correct
@@ -240,7 +224,6 @@ function getUserId(loggedEmail) {
     return index;
 }
 
-
 /**
  * This function resets all values
  * 
@@ -249,7 +232,6 @@ function loginErrorReset() {
     loginPassword.value = '';
     loginBtn.disabled = false;
 }
-
 
 /**
  * This function includes all output messages in the various cases of the login process.
@@ -268,15 +250,13 @@ function showLoginMessage() {
     }
 }
 
-
 /**
  * This function forwarding the user to summary.html with a success message in the URL
  * 
  */
 function forwardToSummary() {
-    window.location.href = `./summary.html?msg=Du hast dich erfolgreich angemeldet "${users[indexByEmail]['name']}"`; //queryParameter 
+    window.location.href = `./summary.html?msg=Du hast dich erfolgreich angemeldet "${users[indexByEmail]['name']}"`;
 }
-
 
 /**
  * This function allows guest to login without registration before
@@ -287,7 +267,6 @@ function guestLogin() {
     localStorage.setItem('logged', true);
     setTimeout(forwardSummaryAsGuest, 500);
 }
-
 
 /**
  * Redirects the user to the summary page with a message indicating they are logged in as a guest.

@@ -7,7 +7,6 @@ let subtasksDone = [];
 let longTapDuration = 1000; // time for the long tap
 let widthForMobileSettings = 430; // width For Mobile Settings
 
-
 /**
  * This function renders the tasks on board
  *
@@ -28,7 +27,6 @@ async function renderBoardTasks() {
   }
 }
 
-
 /**
  * This function show the "no tasks" div, when no todos could find in a category
  *
@@ -36,7 +34,6 @@ async function renderBoardTasks() {
 function showNoTaskDiv() {
   return `<div class="drag-area-no-tasks d_f_c_c width-max">no tasks</div>`;
 }
-
 
 /**
  * This function checks, whether the tasks are empty.
@@ -51,7 +48,6 @@ async function reloadTasksOnBoard() {
     await updateOrLoadData();
   }
 }
-
 
 /**
  * This function initiate all functions for generate the todos for each category
@@ -69,7 +65,6 @@ function showTasksForEachCategory(allTasksSameCategory, categoryTableColumn) {
   }
 }
 
-
 /**
  * This function initiate the guest message on board
  * 
@@ -82,7 +77,6 @@ function showGuestMessageOnBoard() {
   }
 }
 
-
 /**
  * This function generates the current priority of the todo
  * 
@@ -94,7 +88,6 @@ function getPrioForTask(task) {
     <img src="../assets/img/${getPriorityIcon(task)}" alt="">
     `;
 }
-
 
 /**
  * This function generates the current "assignedTo" contacts of the todo
@@ -117,7 +110,6 @@ function getContactsForTask(task) {
   addAnPlusForMoreContacts(task, contactsForTaskDiv);
 }
 
-
 /**
  * This function generates an plus symbol, if there are more than five contacts in the task
  * 
@@ -129,7 +121,6 @@ function addAnPlusForMoreContacts(task, contactsForTaskDiv) {
     contactsForTaskDiv.innerHTML += `<div class="d_f_c_c gap-5"><span class="plus-icon-task">+</span><span class="plus-icon-task plus-contacts-text">${task.assignedTo.length - 5}</span></div>`;
   }
 }
-
 
 /**
  * This function generates the progressBar of the todo
@@ -152,7 +143,6 @@ function updateProgressBar(task) {
   resetProgressBar(task, allSubtasksByTask, progressBar);
 }
 
-
 /**
  * This function resets the progressbar, when there are no subtasks anymore
  * 
@@ -163,7 +153,6 @@ function resetProgressBar(task, allSubtasksByTask) {
     progressBarDiv.remove();
   }
 }
-
 
 /**
  * This function displays the subtasks satus text under the progressbar by hovering
@@ -178,7 +167,6 @@ function showSubtasksByHovering(element) {
   };
 }
 
-
 /**
  * This function starts the drag of the todo
  * 
@@ -187,7 +175,6 @@ function showSubtasksByHovering(element) {
 function startDragging(id) {
   currentDraggedTaskId = id;
 }
-
 
 /**
  * This function moves the todo to the new category after drop
@@ -208,7 +195,6 @@ async function moveTo(currentCategory) {
   await renderBoardTasks();
 }
 
-
 /**
  * This function allows the element only to drop at the final position
  * 
@@ -217,7 +203,6 @@ async function moveTo(currentCategory) {
 function allowDrop(event) {
   event.preventDefault();
 }
-
 
 /**
  * This function adds a class for highlighting the final category column
@@ -228,7 +213,6 @@ function highlight(id) {
   document.getElementById(id).classList.add('drag-area-highlight');
 }
 
-
 /**
  * This function removes the class for the highlighting the last category column
  * 
@@ -238,9 +222,7 @@ function removeHighlight(id) {
   document.getElementById(id).classList.remove('drag-area-highlight');
 }
 
-
 ////////////////////// TODO OPENED POPUP ////////////////////// 
-
 
 /**
  * This function initiates the rendering of the todo when it is open
@@ -261,7 +243,6 @@ async function openBoardTaskPopup(openId) {
   moveContainerIn(container);
   await renderBoardTaskPopupContent();
 }
-
 
 /**
  * This function contains the rendering functions for rendering the open todo
@@ -288,7 +269,6 @@ function showTaskText(todo) {
   renderShowTaskContent(todo, openLabel, openTitle, openDescription, openDueDate, openPriority); // outsourced in renderHTML.js
 }
 
-
 /**
  * This function gets the "assignedTo" contacts and initiate the rendering of these 
  *  
@@ -306,7 +286,6 @@ function getContactsForPopupTask(todo) {
   }
 }
 
-
 /**
  * This function contains the rendering for the entire subtasks of the task
  *  
@@ -318,7 +297,6 @@ async function getSubtasksForPopupTask() {
   getAllOpenSubtasks(taskPopupContentSubtasks);
   getAllDoneSubtasks(taskPopupContentSubtasks);
 }
-
 
 /**
  * This function loads the subtasks of the current task from the user or the guest
@@ -334,7 +312,6 @@ async function loadSubtasksByOpenTask() {
   }
 }
 
-
 /**
  * This function renders all subtasks, which are not done
  *  
@@ -346,7 +323,6 @@ function getAllOpenSubtasks(taskPopupContentSubtasks) {
   }
 }
 
-
 /**
  * This function renders all subtasks, which are already done
  *  
@@ -357,7 +333,6 @@ function getAllDoneSubtasks(taskPopupContentSubtasks) {
     taskPopupContentSubtasks.innerHTML += renderDoneSubtasks(b); // outsourced in renderHTML.js
   }
 }
-
 
 /**
  * This function switches the subtask status between open and done
@@ -377,7 +352,6 @@ async function clickSubtaskToSwitch(pos, element) {
   getSubtasksForPopupTask();
 }
 
-
 /**
  * This function removes the current subtask from the "open" subtasks array and moves it to the "done" subtasks array.
  * If the user is registered, the data is stored remotely
@@ -394,7 +368,6 @@ async function saveSwitchedToDoneSubtasks(pos) {
     tasks[currentOpenTaskId].subtasksOpen.splice(pos, 1);
   }
 }
-
 
 /**
  * This function removes the current subtask from the "done" ubtasks array and moves it to the "open" subtasks array.
@@ -413,7 +386,6 @@ async function saveSwitchedToOpenSubtasks(pos) {
   }
 }
 
-
 /**
  * This function closes the opened task
  * 
@@ -430,7 +402,6 @@ function closeBoardTaskPopup() {
   }, 500);
 }
 
-
 /**
  * This function resets the default values ​​after closing the open task
  * 
@@ -444,12 +415,9 @@ function resetAfterClosingOpenedTask() {
   document.body.style.overflow = "scroll";
 }
 
-
 ////////////////////// END TODO OPENED POPUP ////////////////////// 
 
-
 /////////////////////////// EDIT TASK ///////////////////////////// 
-
 
 /**
  * This function initiate the style and rendering for the edit task form
@@ -465,12 +433,11 @@ async function editTask() {
   renderTextForEdit();
   getCurrentPriorityBtn();
   const todo = tasks[currentOpenTaskId];
-  getContactsForPopupTask(todo); // already used for todo opened popup
-  checkedCheckboxes = todo.assignedTo; // global variable in add-task.js
-  showContactSelection(); // outsourced in add-task.js
+  getContactsForPopupTask(todo); 
+  checkedCheckboxes = todo.assignedTo; 
+  showContactSelection(); 
   renderSubtasksPopup();
 }
-
 
 /**
  * This function hides and displays the elements for a different style than the normal add task form
@@ -491,7 +458,6 @@ function hideAndDisplayElementsForEdit() {
   btnDivOk.style.display = "flex";
 }
 
-
 /**
  * This function changes the style of the form for a different style than the normal add task form
  * 
@@ -505,7 +471,6 @@ function changeFormStyle() {
   });
 }
 
-
 /**
  * This function displays the saved title, description and label
  * 
@@ -518,7 +483,6 @@ function renderTextForEdit() {
   taskDescription.value = tasks[currentOpenTaskId].description;
   taskDate.value = tasks[currentOpenTaskId].dueDate;
 }
-
 
 /**
  * This function displays the saved category as a button
@@ -539,7 +503,6 @@ function getCurrentPriorityBtn() {
   }
 }
 
-
 /**
  * This function renders the subtasks in the edit form
  * 
@@ -555,12 +518,9 @@ function renderSubtasksPopup() {
   });
 }
 
-
 /////////////////////////// END EDIT TASK ///////////////////////////// 
 
-
 /////////////////////////// MORE OPTIONS FOR TODOS ///////////////////////////// 
-
 
 /**
  * This functions deletes the current todo from board 
@@ -576,12 +536,9 @@ async function deleteTask() {
   await renderBoardTasks();
 }
 
-
 /////////////////////////// END MORE OPTIONS FOR TODOS ///////////////////////////// 
 
-
 ///////////////////////////////// ADD-TASK POPUP /////////////////////////////////// 
-
 
 /**
  * This functions initiate all functions for the popup add-task form on board.html
@@ -601,7 +558,6 @@ function openBoardAddTaskPopup(element) {
   moveContainerIn(container); // outsourced in script.js
 }
 
-
 /**
  * This functions changes the category after clicking the Add Task button from the category
  * 
@@ -614,7 +570,6 @@ function changeTodoCategoryByColumn(element) {
     setCategory = 'awaitFeedback';
   }
 }
-
 
 /**
  * This functions closes the popup add-task form
@@ -635,12 +590,9 @@ function closeBoardAddTaskPopup() {
   templateIndex = 3;
 }
 
-
 //////////////////////////////// END ADD-TASK POPUP ////////////////////////////////
 
-
 ///////////////////////////////// SEARCH FUNCTION //////////////////////////////////
-
 
 /**
  * This function initiate all search functions
@@ -656,7 +608,6 @@ async function searchTasksOnBoard() {
   resetSearch();
 }
 
-
 /**
  * This function includes search querys whehter a search is allowed or not, here only one query set
  *
@@ -668,7 +619,6 @@ async function setQueryForSearch(matchingIndices, search) {
     await findTasksIndices(matchingIndices, search);
   }
 }
-
 
 /**
  * This function iterates all tasks, whether the task description or task name includes the search result
@@ -690,7 +640,6 @@ async function findTasksIndices(matchingIndices, search) {
   }
 }
 
-
 /**
  * This function includes search querys whehter a search is allowed or not, here only one query set
  *
@@ -708,7 +657,6 @@ function displaySearchMessage(matchingIndices) {
   }
 }
 
-
 /**
  * This function hides the result message container, after click on the "go back" link  
  *
@@ -718,7 +666,6 @@ async function renderAfterSearch() {
   resultMessageDiv.style.display = "none";
   await renderBoardTasks();
 }
-
 
 /**
  * This function creates all categegories and the corresponding tasks with the parameter "allTasksSameCategory"
@@ -741,7 +688,6 @@ async function generateCategoriesBySearch(matchingIndices) {
   }
 }
 
-
 /**
  * After the search results are displayed, the search input field will reset
  *
@@ -749,7 +695,6 @@ async function generateCategoriesBySearch(matchingIndices) {
 function resetSearch() {
   document.getElementById("searchBoardInput").value = '';
 }
-
 
 /**
  * The search function should also start, when the key-button "enter" is pressed
@@ -760,6 +705,5 @@ function searchTasksByKeyPress(event) {
     searchTasksOnBoard();
   }
 }
-
 
 /////////////////////////////// END SEARCH FUNCTION ///////////////////////////////
